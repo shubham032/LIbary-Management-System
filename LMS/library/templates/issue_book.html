@@ -1,0 +1,61 @@
+{% extends 'list_categories.html' %}
+{% block content %}
+<style>
+  .issue-book-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e3f2fd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  .issue-book-form h1 {
+    color: #212529;
+  }
+  .issue-book-form label {
+    margin: 10px 0 5px;
+    color: #495057;
+  }
+  .issue-book-form select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    width: 100%;
+  }
+  .issue-book-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #17a2b8;
+    color: #fff;
+    cursor: pointer;
+  }
+  .issue-book-form button:hover {
+    background-color: #138496;
+  }
+</style>
+
+<div class="issue-book-form">
+  <h1>Issue Book</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="book_id">Select Book:</label>
+    <select name="book_id" id="book_id">
+      {% for book in books %}
+      <option value="{{ book.id }}">{{ book.title }}</option>
+      {% endfor %}
+    </select>
+    <label for="user_id">Select User:</label>
+    <select name="user_id" id="user_id">
+      {% for user in users %}
+      <option value="{{ user.id }}">{{ user.username }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Issue Book</button>
+  </form>
+</div>
+{% endblock content %}

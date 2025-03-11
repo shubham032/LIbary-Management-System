@@ -1,0 +1,49 @@
+{% extends 'list_categories.html' %} 
+{% block content %}
+<style>
+  .books-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e3f2fd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  .books-list h1 {
+    color: #212529;
+  }
+  .books-list ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+  }
+  .books-list li {
+    background-color: #e9ecef;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+  }
+  .books-list a {
+    text-decoration: none;
+    color: #17a2b8;
+  }
+  .books-list a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="books-list">
+  <h1>Books in Category</h1>
+  <ul>
+    {% for book in books %}
+    <li><a href="/book/{{book.id}}">{{book.title}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}
